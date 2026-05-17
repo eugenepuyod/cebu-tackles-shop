@@ -429,7 +429,7 @@ onBeforeUnmount(() => {
           preload="auto"
           class="absolute inset-0 w-full h-full object-cover object-center bg-fixed bg-no-repeat bg-cover z-0"
         >
-          <source src="/video/above-ocean.mp4" type="video/mp4" />
+          <source src="/video/banner-video.mp4" type="video/mp4" />
         </video>
 
        <div v-intersect class="absolute lg:left-[20%] bottom-[5%] sm:bottom-[20%] lg:bottom-[25%] md:max-w-2xl lg:max-w-3xl mx-4 lg:mx-auto bg-white/20 p-5 lg:p-10 z-10">
