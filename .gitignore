@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+public/video/above-ocean.mp4
 dist
 dist-ssr
 *.local
