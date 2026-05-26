@@ -450,7 +450,7 @@ onBeforeUnmount(() => {
           </div>
 
           <!-- Right Logo -->
-          <div class="w-[150px] h-[150px] overflow-hidden relative">
+          <div class="w-[150px] h-[150px] overflow-hidden relative hidden md:inline">
               <img
                 src="/images/online-shipping-design.png"
                 alt=""
@@ -489,27 +489,52 @@ onBeforeUnmount(() => {
 
     <!-- Two images full -->
     <section>
-      <div class="relative w-full bg-white pt-[30px]">
-        <div class="mx-3 grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div class="w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden">
-            <img 
-              src="/images/shimano-stella-2.jpg" 
-              alt="" 
-              class="w-full h-full object-cover"
-            >
-          </div>
+  <div class="relative w-full bg-white pt-[30px]">
+    <div class="mx-3 grid grid-cols-1 md:grid-cols-2 gap-5">
 
-          <div class="w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden">
-            <img 
-              src="/images/shimano-stella-2.jpg" 
-              alt="" 
-              class="w-full h-full object-cover"
-            >
-          </div>
+      <!-- IMAGE 1 -->
+      <div class="relative w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden">
+        <img 
+          src="/images/shimano-stella.jpg" 
+          alt="" 
+          class="w-full h-full object-cover"
+        >
+
+        <!-- Overlay Text -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/30">
+          <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold">
+            Premium Fishing Gear
+          </h2>
+
+          <p class="mt-3 text-white text-sm sm:text-base lg:text-lg max-w-md">
+            Experience unmatched performance and precision on every cast.
+          </p>
         </div>
-
       </div>
-    </section>
+
+      <!-- IMAGE 2 -->
+      <div class="relative w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden">
+        <img 
+          src="/images/shimano-stella-2.jpg" 
+          alt="" 
+          class="w-full h-full object-cover"
+        >
+
+        <!-- Overlay Text -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/30">
+          <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold">
+            Shimano Stella
+          </h2>
+
+          <p class="mt-3 text-white text-sm sm:text-base lg:text-lg max-w-md">
+            Built for anglers who demand excellence and durability.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 
@@ -653,20 +678,31 @@ onBeforeUnmount(() => {
 
 
     <!-- Two images full -->
-    <section>
-      <div class="relative w-full bg-white pt-[30px]">
-        <div class="mx-3 grid grid-cols-1 gap-5">
-          <div class="w-full h-[50vh] sm:h-[60vh] lg:h-[80vh] overflow-hidden">
-            <img 
-              src="/images/shimano-stella-2.jpg" 
-              alt="" 
-              class="w-full h-full object-cover"
-            >
-          </div>
-        </div>
+    <section 
+    class="py-32 relative flex items-center justify-center overflow-hidden min-h-150  lg:min-h-175 
+    bg-fixed bg-no-repeat bg-cover bg-[position:center_10px] md:bg-[position:center_27%]" 
+    style="background-image: url('/images/oj-fcustom.jpg');
+    ">
+      <div class="absolute inset-0 bg-gradient-to-br from-black/20 to-blue-400/20"></div>
+      <!-- DARK OVERLAY -->
+      <div class="absolute inset-0 bg-black/35"></div>
 
+      <!-- CENTER TEXT -->
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+
+        <!-- HEADER -->
+        <h1 class="text-white text-3xl sm:text-5xl lg:text-6xl font-bold tracking-wide">
+          OCEA JIGGER F CUSTOM
+        </h1>
+
+        <!-- SUB HEADER -->
+        <p class="mt-4 text-white text-sm sm:text-lg lg:text-xl max-w-2xl leading-relaxed">
+          Precision engineering and unmatched durability designed for serious anglers.
+        </p>
       </div>
+
     </section>
+
 
 
     <!-- VIDEOS, ARTICLES & ADVICE 1 -->
