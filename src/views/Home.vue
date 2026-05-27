@@ -677,6 +677,12 @@ onBeforeUnmount(() => {
 
 
 
+
+
+
+
+
+
     <!-- Two images full -->
     <section 
     class="py-32 relative flex items-center justify-center overflow-hidden min-h-150  lg:min-h-175 
@@ -705,8 +711,158 @@ onBeforeUnmount(() => {
 
 
 
+
+
+
+
+
+    <section id="featured" class="py-5 md:py-10 md:pt-20 bg-white relative">
+      <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
+                  grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10">
+
+        <!-- LEFT CONTENT -->
+        <div 
+          class="lg:col-span-1 flex flex-col justify-between"
+          v-intersect
+        >
+          <div>
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-left mb-3 md:mb-6 text-blue-950 tracking-tight leading-tight uppercase">
+              Top<br />
+              <span>Picks</span>
+            </h2>
+
+            <p class="text-md md:text-2xl text-blue-950 mb-8 font-medium leading-relaxed uppercase">
+              Explore our collection of trusted fishing rods, reels, tackle, and accessories designed to help anglers fish with confidence and precision.
+            </p>
+          </div>
+
+          
+        </div>
+
+        <!-- RIGHT PRODUCTS -->
+        <div class="lg:col-span-3">
+          <Swiper
+            :modules="swiperModules"
+            :slidesPerView="1"
+            :spaceBetween="20"
+
+            :breakpoints="{
+              640: { slidesPerView: 2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 30 },
+              1280: { slidesPerView: 3, spaceBetween: 30 }
+            }"
+
+            :loop="true"
+            :navigation="{ prevEl: '.prevElFeatured', nextEl: '.nextElFeatured' }"
+
+            :speed="600"
+            :grabCursor="true"
+            :freeMode="true"
+            :freeModeMomentum="true"
+            :freeModeMomentumRatio="0.5"
+            :freeModeMomentumVelocityRatio="0.8"
+            :touchRatio="1"
+            :touchAngle="45"
+
+            class="pb-5 md:pb-12 pt-4 w-full"
+          >
+            <SwiperSlide
+              v-for="(feature, index) in featured"
+              :key="feature.name"
+              class="flex-none w-[85vw] sm:w-[50vw] md:w-[320px]
+                    text-left cursor-pointer transition-all duration-500
+                    group transform snap-start flex flex-col items-start justify-center
+                    min-h-[250px]"
+            >
+              <div
+                v-intersect
+                :style="`transition-delay: ${index * 100}ms`"
+                class="text-left cursor-pointer transition-all duration-500
+                      group transform hover:-translate-y-2
+                      flex flex-col items-start justify-center"
+              >
+                <router-link :to="`/product/${feature.id}`">
+                  <img
+                    :src="feature.image"
+                    alt=""
+                    class="w-full aspect-square object-cover"
+                  />
+                </router-link>
+
+                <div class="grid grid-cols-1 gap-4 w-full p-2">
+                  <div class="w-full">
+                    <h3 class="uppercase mt-[15px] text-3xl font-bold text-blue-950">
+                      ₱{{ feature.price.toFixed(2) }}
+                    </h3>
+
+                    <p class="text-blue-950 text-lg">
+                      {{ feature.name }}
+                    </p>
+                  </div>
+
+                  <button
+                    @click.prevent="cartStore.addItem(feature, 1)"
+                    class="bg-blue-950 text-white font-extrabold py-4 text-center
+                          items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.2)]
+                          hover:shadow-[0_15px_30px_rgba(59,130,246,0.4)]
+                          transition-all duration-300 transform hover:-translate-y-1
+                          hover:scale-105 active:scale-95 flex uppercase mb-5
+                          w-full lg:w-3/4"
+                  >
+                    <ShoppingBag class="w-4 h-4 mr-2" />
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+          <!-- NAV BUTTONS -->
+          <div class="flex space-x-4 mt-6">
+            <button
+              aria-label="Previous Featured"
+              class="prevElFeatured p-4 bg-white border border-gray-200 text-gray-800 
+              hover:text-blue-900 hover:bg-blue-50 hover:border-blue-300
+              shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] 
+              hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] 
+              transition-all transform hover:-translate-x-1 outline-none"
+            >
+              <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+
+            <button
+              aria-label="Next Featured"
+              class="nextElFeatured p-4 bg-white border border-gray-200 text-gray-800 
+              hover:text-blue-900 hover:bg-blue-50 hover:border-blue-300
+              shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] 
+              hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] 
+              transition-all transform hover:translate-x-1 outline-none"
+            >
+              <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- VIDEOS, ARTICLES & ADVICE 1 -->
-    <section id="videosArticle" class="py-5 md:py-10 md:pt-20 bg-white relative">
+    <section id="videosArticle" class="py-5 md:py-10 md:pt-20 bg-white relative hidden">
       <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
                   grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         
@@ -864,112 +1020,6 @@ onBeforeUnmount(() => {
 
 
 
-
-    
-
-    <!-- VIDEOS, ARTICLES & ADVICE 2 -->
-    <section id="featured" class="py-5 md:py-10 md:pt-20 bg-white relative">
-      <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
-                  grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
-        
-        <!-- Left Sidebar -->
-        <div class="lg:col-span-1 flex flex-col justify-start" v-intersect>
-          <div>
-            <h2 class="text-3xl lg:text-5xl font-extrabold text-left mb-3 md:mb-6 text-blue-950 tracking-tight leading-tight uppercase">
-              FEATURED<br/>
-              <span>GEAR TYPES</span>
-            </h2>
-
-            <p class="text-md md:text-2xl text-blue-950 mb-0 md:mb-10 font-medium leading-relaxed uppercase">
-              Browse trusted fishing equipment and essentials built to deliver smooth handling, strength, and reliability in every catch.
-            </p>
-          </div>
-        </div>
-
-        <!-- Right Container -->
-        <div class="lg:col-span-3">
-          <!-- Swiper -->
-          <Swiper
-            :modules="swiperModules"
-            :slidesPerView="1"
-            :spaceBetween="20"
-            :breakpoints="{
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              1024: { slidesPerView: 3, spaceBetween: 30 },
-              1280: { slidesPerView: 3, spaceBetween: 30 }
-            }"
-            :loop="true"
-            :navigation="{ prevEl: '.prevElvideosArticles', nextEl: '.nextElvideosArticles' }"
-
-            :speed="600"
-            :grabCursor="true"
-            :freeMode="true"
-            :freeModeMomentum="true"
-            :freeModeMomentumRatio="0.5"
-            :freeModeMomentumVelocityRatio="0.8"
-            :touchRatio="1"
-            :touchAngle="45"
-            
-            class="pb-5 md:pb-12 pt-4 w-full"
-          >
-            <SwiperSlide
-              v-for="(videosArticle, index) in videosArticles"
-              :key="videosArticle.name"
-              class="
-                flex-none w-[85vw] sm:w-[50vw] md:w-[320px] 
-                text-left cursor-pointer 
-                transition-all duration-500 
-                group transform snap-start flex flex-col items-start justify-center 
-                min-h-[250px]
-              "
-            >
-              <div
-                v-intersect
-                :style="`transition-delay: ${index * 100}ms`"
-                class="
-                  text-left cursor-pointer 
-                  transition-all duration-500 
-                  group transform hover:-translate-y-2
-                  flex flex-col items-start justify-center
-                "
-              >
-                <img :src="videosArticle.image" alt="" class="w-full aspect-square object-cover">
-
-                <h3 class="uppercase mt-[15px] text-xl md:text-2xl font-bold text-blue-950 group-hover:text-blue-900 transition-colors">
-                  {{ videosArticle.name }}
-                </h3>
-
-                <p class="text-blue-950 text-md md:text-xl">{{ videosArticle.shortDesc }}</p>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-
-          <div class="flex space-x-4 mt-4 lg:mt-7 lg:px-0 w-full justify-start">
-              <button aria-label="Previous Videos" 
-                class="prevElvideosArticles p-4 bg-white border border-gray-200 text-gray-800 hover:text-blue-900 hover:bg-blue-50 hover:border-blue-300 
-                shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] transition-all transform hover:-translate-x-1 
-                outline-none
-                ">
-                <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-              </button>
-              <button aria-label="Next Videos" class="nextElvideosArticles p-4 bg-white border border-gray-200 text-gray-800 hover:text-blue-900 hover:bg-blue-50 hover:border-blue-300 shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] transition-all transform hover:translate-x-1 outline-none">
-                <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-              </button>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
     <section id="featured" class="py-5 md:py-10 md:pt-20 bg-white relative">
       <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
                   grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -1103,6 +1153,117 @@ onBeforeUnmount(() => {
 
       </div>
     </section>
+
+
+
+
+
+    
+
+    <!-- VIDEOS, ARTICLES & ADVICE 2 -->
+    <section id="featured" class="py-5 md:py-10 md:pt-20 bg-white relative">
+      <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
+                  grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+        
+        <!-- Left Sidebar -->
+        <div class="lg:col-span-1 flex flex-col justify-start" v-intersect>
+          <div>
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-left mb-3 md:mb-6 text-blue-950 tracking-tight leading-tight uppercase">
+              FEATURED<br/>
+              <span>GEAR TYPES</span>
+            </h2>
+
+            <p class="text-md md:text-2xl text-blue-950 mb-0 md:mb-10 font-medium leading-relaxed uppercase">
+              Browse trusted fishing equipment and essentials built to deliver smooth handling, strength, and reliability in every catch.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Container -->
+        <div class="lg:col-span-3">
+          <!-- Swiper -->
+          <Swiper
+            :modules="swiperModules"
+            :slidesPerView="1"
+            :spaceBetween="20"
+            :breakpoints="{
+              640: { slidesPerView: 2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 30 },
+              1280: { slidesPerView: 3, spaceBetween: 30 }
+            }"
+            :loop="true"
+            :navigation="{ prevEl: '.prevElvideosArticles', nextEl: '.nextElvideosArticles' }"
+
+            :speed="600"
+            :grabCursor="true"
+            :freeMode="true"
+            :freeModeMomentum="true"
+            :freeModeMomentumRatio="0.5"
+            :freeModeMomentumVelocityRatio="0.8"
+            :touchRatio="1"
+            :touchAngle="45"
+            
+            class="pb-5 md:pb-12 pt-4 w-full"
+          >
+            <SwiperSlide
+              v-for="(videosArticle, index) in videosArticles"
+              :key="videosArticle.name"
+              class="
+                flex-none w-[85vw] sm:w-[50vw] md:w-[320px] 
+                text-left cursor-pointer 
+                transition-all duration-500 
+                group transform snap-start flex flex-col items-start justify-center 
+                min-h-[250px]
+              "
+            >
+              <div
+                v-intersect
+                :style="`transition-delay: ${index * 100}ms`"
+                class="
+                  text-left cursor-pointer 
+                  transition-all duration-500 
+                  group transform hover:-translate-y-2
+                  flex flex-col items-start justify-center
+                "
+              >
+                <img :src="videosArticle.image" alt="" class="w-full aspect-square object-cover">
+
+                <h3 class="uppercase mt-[15px] text-xl md:text-2xl font-bold text-blue-950 group-hover:text-blue-900 transition-colors">
+                  {{ videosArticle.name }}
+                </h3>
+
+                <p class="text-blue-950 text-md md:text-xl">{{ videosArticle.shortDesc }}</p>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+
+          <div class="flex space-x-4 mt-4 lg:mt-7 lg:px-0 w-full justify-start">
+              <button aria-label="Previous Videos" 
+                class="prevElvideosArticles p-4 bg-white border border-gray-200 text-gray-800 hover:text-blue-900 hover:bg-blue-50 hover:border-blue-300 
+                shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] transition-all transform hover:-translate-x-1 
+                outline-none
+                ">
+                <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+              </button>
+              <button aria-label="Next Videos" class="nextElvideosArticles p-4 bg-white border border-gray-200 text-gray-800 hover:text-blue-900 hover:bg-blue-50 hover:border-blue-300 shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] transition-all transform hover:translate-x-1 outline-none">
+                <svg class="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
