@@ -714,12 +714,12 @@ onBeforeUnmount(() => {
         <div class="lg:col-span-1 flex flex-col justify-start" v-intersect>
           <div>
             <h2 class="text-3xl lg:text-5xl font-extrabold text-left mb-3 md:mb-6 text-blue-950 tracking-tight leading-tight uppercase">
-              Videos<br/>
-              <span>ARTICLES & ADVICE</span>
+              POPULAR<br/>
+              <span>COLLECTIONS</span>
             </h2>
 
             <p class="text-md md:text-2xl text-blue-950 mb-0 md:mb-10 font-medium leading-relaxed uppercase">
-              Explore our featured fishing gear handpicked rods, reels, tackle, and accessories trusted by anglers for performance, durability, and every kind of catch.
+              Explore high-quality fishing gear including rods, reels, tackle, lines, and accessories designed for durability, precision, and every fishing adventure.
             </p>
           </div>
         </div>
@@ -865,9 +865,6 @@ onBeforeUnmount(() => {
 
 
 
-
-
-
     
 
     <!-- VIDEOS, ARTICLES & ADVICE 2 -->
@@ -879,12 +876,12 @@ onBeforeUnmount(() => {
         <div class="lg:col-span-1 flex flex-col justify-start" v-intersect>
           <div>
             <h2 class="text-3xl lg:text-5xl font-extrabold text-left mb-3 md:mb-6 text-blue-950 tracking-tight leading-tight uppercase">
-              Videos<br/>
-              <span>ARTICLES & ADVICE</span>
+              FEATURED<br/>
+              <span>GEAR TYPES</span>
             </h2>
 
             <p class="text-md md:text-2xl text-blue-950 mb-0 md:mb-10 font-medium leading-relaxed uppercase">
-              Explore our featured fishing gear handpicked rods, reels, tackle, and accessories trusted by anglers for performance, durability, and every kind of catch.
+              Browse trusted fishing equipment and essentials built to deliver smooth handling, strength, and reliability in every catch.
             </p>
           </div>
         </div>
@@ -1094,12 +1091,12 @@ onBeforeUnmount(() => {
         <div class="lg:col-span-1 order-1 lg:order-2 flex flex-col justify-start" v-intersect>
           <div>
             <h2 class="text-3xl lg:text-5xl font-extrabold text-left mb-3 md:mb-6 text-blue-950 tracking-tight leading-tight uppercase">
-              Featured<br/>
-              <span>Products</span>
+              Best Selling<br/>
+              <span>Fishing Gear</span>
             </h2>
 
             <p class="text-md md:text-2xl text-blue-950 mb-0 md:mb-10 font-medium leading-relaxed uppercase">
-              Explore our featured fishing gear handpicked rods, reels, tackle, and accessories trusted by anglers for performance, durability, and every kind of catch.
+              Explore high-quality fishing tools and accessories chosen by anglers for strength, precision, and dependable results on the water.
             </p>
           </div>
         </div>
