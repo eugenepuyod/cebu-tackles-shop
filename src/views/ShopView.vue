@@ -302,7 +302,7 @@ const addToCart = () => {
             <div class="h-[300px] sm:h-[250px] lg:h-[250px] w-full bg-gray-50 flex items-center justify-center p-6 relative overflow-hidden shrink-0 border-b border-gray-50">
               <img :src="product.image" :alt="product.name" class="h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500">
               <div class="absolute top-4 left-4 bg-blue-500 text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
-                Best Seller
+                {{product.tags[product.tags.length - 1]}}
               </div>
               <div v-if="!product.inStock" class="absolute bottom-3 left-3 bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded-md shadow-sm">Out of Stock</div>
             </div>

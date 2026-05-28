@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { ArrowRight, Star, StarHalf, Quote, ChevronRight, ChevronLeft, Heart, ShoppingBag, Users, Award } from 'lucide-vue-next'
 import { useCartStore, bundleCatalogs } from '../stores/cart'
-import { bundleMarketing, bundleProducts } from '../data/products'
+import { products, bundleMarketing, bundleProducts } from '../data/products'
 
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules'
@@ -13,16 +13,16 @@ import 'swiper/css/navigation';
 const cartStore = useCartStore()
 const swiperModules = [Autoplay, EffectFade, Navigation, Pagination]
 
-const products = ref([
-  { id: 1, name: 'iPhone 15 Pro Max', category: 'Cellphones', price: 1199, image: '/iphone.png' },
-  { id: 2, name: 'Samsung Galaxy S24 Ultra', category: 'Cellphones', price: 1299, image: '/samsung.png' },
-  { id: 3, name: 'AirPods Pro 2', category: 'Accessories', price: 249, image: '/iphone.png' },
-  { id: 4, name: 'Galaxy Watch 6', category: 'Gadgets', price: 299, image: '/samsung.png' },
-  { id: 5, name: 'Google Pixel 8 Pro', category: 'Cellphones', price: 999, image: '/samsung.png' },
-  { id: 6, name: 'Sony WH-1000XM5', category: 'Accessories', price: 398, image: '/iphone.png' },
-  { id: 7, name: 'OnePlus 12', category: 'Cellphones', price: 799, image: '/samsung.png' },
-  { id: 8, name: 'Apple iPad Pro', category: 'Gadgets', price: 1099, image: '/iphone.png' },
-])
+// const products = ref([
+//   { id: 1, name: 'iPhone 15 Pro Max', category: 'Cellphones', price: 1199, image: '/iphone.png' },
+//   { id: 2, name: 'Samsung Galaxy S24 Ultra', category: 'Cellphones', price: 1299, image: '/samsung.png' },
+//   { id: 3, name: 'AirPods Pro 2', category: 'Accessories', price: 249, image: '/iphone.png' },
+//   { id: 4, name: 'Galaxy Watch 6', category: 'Gadgets', price: 299, image: '/samsung.png' },
+//   { id: 5, name: 'Google Pixel 8 Pro', category: 'Cellphones', price: 999, image: '/samsung.png' },
+//   { id: 6, name: 'Sony WH-1000XM5', category: 'Accessories', price: 398, image: '/iphone.png' },
+//   { id: 7, name: 'OnePlus 12', category: 'Cellphones', price: 799, image: '/samsung.png' },
+//   { id: 8, name: 'Apple iPad Pro', category: 'Gadgets', price: 1099, image: '/iphone.png' },
+// ])
 
 const featuredSlider = ref(null)
 
@@ -50,6 +50,18 @@ const scrollvideosArticles = (dir) => {
     videosArticlesSlider.value.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' })
   }
 }
+
+const displayFeatured = computed(() => {
+  return products.filter(p => p.display == 'featured')
+})
+
+const displayToppicks = computed(() => {
+  return products.filter(p => p.display == 'toppicks')
+})
+
+const displayBestseller = computed(() => {
+  return products.filter(p => p.bestseller == 'bestseller')
+})
 
 const categories = [
   { name: 'Reels', image: '/images/cat-reels-4.jpg', shortDesc: 'Spinning, overhead & electric', link: '/shop?tag=Reels' },
@@ -573,7 +585,7 @@ onBeforeUnmount(() => {
             class="pb-5 md:pb-12 pt-4 w-full"
           >
             <SwiperSlide
-              v-for="(feature, index) in featured"
+              v-for="(feature, index) in displayFeatured"
               :key="feature.name"
               class="
                 flex-none w-[85vw] sm:w-[50vw] md:w-[320px] 
@@ -767,7 +779,7 @@ onBeforeUnmount(() => {
             class="pb-5 md:pb-12 pt-4 w-full"
           >
             <SwiperSlide
-              v-for="(feature, index) in featured"
+              v-for="(feature, index) in displayToppicks"
               :key="feature.name"
               class="flex-none w-[85vw] sm:w-[50vw] md:w-[320px]
                     text-left cursor-pointer transition-all duration-500
@@ -1052,7 +1064,7 @@ onBeforeUnmount(() => {
             class="pb-5 md:pb-12 pt-4 w-full"
           >
             <SwiperSlide
-              v-for="(feature, index) in featured"
+              v-for="(feature, index) in displayBestseller"
               :key="feature.name"
               class="
                 flex-none w-[85vw] sm:w-[50vw] md:w-[320px] 
