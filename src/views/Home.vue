@@ -66,6 +66,11 @@ const displayBestseller = computed(() => {
 const categories = [
   { name: 'Reels', image: '/images/cat-reels-4.jpg', shortDesc: 'Spinning, overhead & electric', link: '/shop?tag=Reels' },
   { name: 'Rods', image: '/images/cat-rod-bend.jpg', shortDesc: 'Spinning, overhead & Surf', link: '/shop?tag=Rods' },
+  { name: 'Lines', image: '/images/cat-lines-braided-2.jpg', shortDesc: 'Braid, monofilament & leader', link: '/shop?tag=Lines' },
+  
+]
+
+const gearTypes = [
   { name: 'Combos', image: '/images/cat-combos.jpg', shortDesc: 'Spinning & overhead', link: '/shop?tag=Combos' },
   { name: 'Lines', image: '/images/cat-lines-braided-2.jpg', shortDesc: 'Braid, monofilament & leader', link: '/shop?tag=Lines' },
   { name: 'Accessories', image: '/images/cat-accessories-2.jpg', shortDesc: 'Rod & reel care', link: '/shop?tag=Accessories' },
@@ -209,7 +214,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="w-full">
     <!-- Hero Slider Segment (Images and Video) -->
-    <section class="relative h-[50vh] md:h-[85vh] flex items-center justify-center group overflow-hidden bg-gray-900"
+    <section class="relative h-[90vh] md:h-[100vh] flex items-center justify-center group overflow-hidden bg-gray-900"
       @mouseenter="pauseAutoSlide"
       @mouseleave="resumeAutoSlide"
     >
@@ -374,8 +379,8 @@ onBeforeUnmount(() => {
 
     <!-- First Parallax  Section -->
     <section 
-      class="py-32 relative flex items-center justify-center overflow-hidden min-h-150  lg:min-h-175 
-        bg-fixed bg-no-repeat bg-cover bg-[position:center_-10px] md:bg-[position:center_27%]" 
+      class="py-32 relative flex items-center justify-center overflow-hidden min-h-[90vh]  lg:min-h-[100vh] 
+        bg-fixed bg-no-repeat bg-cover bg-[position:center_-10px] md:bg-[position:center_2%]" 
         style="background-image: url('/images/cts-team-2.jpg');
     ">
       <div class="absolute inset-0 bg-gradient-to-br from-blue-950/20 to-blue-400/20"></div>
@@ -430,7 +435,7 @@ onBeforeUnmount(() => {
     <section><div class="h-7 bg-white"></div></section>
     <section 
       class="py-32 relative flex items-center justify-center overflow-hidden
-        bg-white sticky top-0 h-[70vh] lg:h-[100vh]
+        bg-white sticky top-0 h-[90vh] lg:h-[100vh]
       ">
        <div class="absolute inset-0 bg-gradient-to-br from-blue-950/20 to-blue-400/20"></div>
        <video
@@ -697,7 +702,7 @@ onBeforeUnmount(() => {
 
     <!-- Two images full -->
     <section 
-    class="py-32 relative flex items-center justify-center overflow-hidden min-h-150  lg:min-h-175 
+    class="py-32 relative flex items-center justify-center overflow-hidden min-h-[90vh]  lg:min-h-[100vh]
     bg-fixed bg-no-repeat bg-cover bg-[position:center_10px] md:bg-[position:center_27%]" 
     style="background-image: url('/images/oj-fcustom.jpg');
     ">
@@ -977,7 +982,7 @@ onBeforeUnmount(() => {
 
     <!-- Second Parallax Section -->
     <section 
-      class="py-32 relative flex items-center justify-center overflow-hidden min-h-150  lg:min-h-175 
+      class="py-32 relative flex items-center justify-center overflow-hidden min-h-[90vh]  lg:min-h-[100vh]
         bg-fixed bg-no-repeat bg-cover bg-[position:center_-10px] md:bg-[position:center_27%]" 
         style="background-image: url('/images/cts-banner-1.jpg');
     ">
@@ -1218,8 +1223,8 @@ onBeforeUnmount(() => {
             class="pb-5 md:pb-12 pt-4 w-full"
           >
             <SwiperSlide
-              v-for="(videosArticle, index) in videosArticles"
-              :key="videosArticle.name"
+              v-for="(gearType, index) in gearTypes"
+              :key="gearType.name"
               class="
                 flex-none w-[85vw] sm:w-[50vw] md:w-[320px] 
                 text-left cursor-pointer 
@@ -1238,13 +1243,15 @@ onBeforeUnmount(() => {
                   flex flex-col items-start justify-center
                 "
               >
-                <img :src="videosArticle.image" alt="" class="w-full aspect-square object-cover">
+                <router-link :to="gearType.link">
+                  <img :src="gearType.image" alt="" class="w-full aspect-square object-cover">
+                </router-link>
 
                 <h3 class="uppercase mt-[15px] text-xl md:text-2xl font-bold text-blue-950 group-hover:text-blue-900 transition-colors">
-                  {{ videosArticle.name }}
+                  {{ gearType.name }}
                 </h3>
 
-                <p class="text-blue-950 text-md md:text-xl">{{ videosArticle.shortDesc }}</p>
+                <p class="text-blue-950 text-md md:text-xl">{{ gearType.shortDesc }}</p>
               </div>
             </SwiperSlide>
           </Swiper>
@@ -1267,32 +1274,9 @@ onBeforeUnmount(() => {
     </section>
 
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Third Parallax Section -->
     <section 
-      class="py-32 relative flex items-center justify-center overflow-hidden min-h-150  lg:min-h-175 
+      class="py-32 relative flex items-center justify-center overflow-hidden min-h-[90vh]  lg:min-h-[100vh]
         bg-fixed bg-no-repeat bg-cover bg-[position:center_-10px] md:bg-[position:center_45px]" 
         style="background-image: url('/images/cts-banner-2.jpg');
     ">
@@ -1340,31 +1324,6 @@ onBeforeUnmount(() => {
         </div>
        </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
