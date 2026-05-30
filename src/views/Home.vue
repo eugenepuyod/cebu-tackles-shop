@@ -56,6 +56,7 @@ const categories = [
   { name: 'Reels', image: '/images/cat-reels-4.jpg', shortDesc: 'Spinning, overhead & electric', link: '/shop?tag=Reels' },
   { name: 'Rods', image: '/images/cat-rod-bend.jpg', shortDesc: 'Spinning, overhead & Surf', link: '/shop?tag=Rods' },
   { name: 'Lines', image: '/images/cat-lines-braided-2.jpg', shortDesc: 'Braid, monofilament & leader', link: '/shop?tag=Lines' },
+  { name: 'Jigs', image: '/images/cat-cjigs.png', shortDesc: 'Metal jigs, slow-pitch & casting jigs', link: '/shop?tag=Jigs' },
   
 ]
 
@@ -63,6 +64,7 @@ const gearTypes = [
   { name: 'Combos', image: '/images/cat-combos.jpg', shortDesc: 'Spinning & overhead', link: '/shop?tag=Combos' },
   { name: 'Lines', image: '/images/cat-lines-braided-2.jpg', shortDesc: 'Braid, monofilament & leader', link: '/shop?tag=Lines' },
   { name: 'Accessories', image: '/images/cat-accessories-2.jpg', shortDesc: 'Rod & reel care', link: '/shop?tag=Accessories' },
+  { name: 'Lures', image: '/images/lures.png', shortDesc: 'Hard baits, soft plastics & topwater lures', link: '/shop?tag=Lures' },
 ]
 
 const featured = [
