@@ -13,17 +13,6 @@ import 'swiper/css/navigation';
 const cartStore = useCartStore()
 const swiperModules = [Autoplay, EffectFade, Navigation, Pagination]
 
-// const products = ref([
-//   { id: 1, name: 'iPhone 15 Pro Max', category: 'Cellphones', price: 1199, image: '/iphone.png' },
-//   { id: 2, name: 'Samsung Galaxy S24 Ultra', category: 'Cellphones', price: 1299, image: '/samsung.png' },
-//   { id: 3, name: 'AirPods Pro 2', category: 'Accessories', price: 249, image: '/iphone.png' },
-//   { id: 4, name: 'Galaxy Watch 6', category: 'Gadgets', price: 299, image: '/samsung.png' },
-//   { id: 5, name: 'Google Pixel 8 Pro', category: 'Cellphones', price: 999, image: '/samsung.png' },
-//   { id: 6, name: 'Sony WH-1000XM5', category: 'Accessories', price: 398, image: '/iphone.png' },
-//   { id: 7, name: 'OnePlus 12', category: 'Cellphones', price: 799, image: '/samsung.png' },
-//   { id: 8, name: 'Apple iPad Pro', category: 'Gadgets', price: 1099, image: '/iphone.png' },
-// ])
-
 const featuredSlider = ref(null)
 
 const scrollFeatured = (dir) => {
@@ -188,13 +177,7 @@ const resumeAutoSlide = () => {
   isPaused.value = false
 }
 
-// const addToCart = (product) => {
-//   store.addToCart(product)
-// }
 
-// onMounted(() => {
-//   sliderInterval = setInterval(nextSlide, 7000)
-// })
 onMounted(() => {
   startAutoSlide()
 })
@@ -204,11 +187,35 @@ onBeforeUnmount(() => {
 })
 
 
-// import { onUnmounted } from 'vue'
 
-// onUnmounted(() => {
-//   if (sliderInterval) clearInterval(sliderInterval)
-// })
+async function waitForMedia() {
+  const images = [...document.images];
+  const videos = [...document.querySelectorAll('video')];
+
+  const imagePromises = images.map(img => {
+    if (img.complete) return Promise.resolve();
+
+    return new Promise(resolve => {
+      img.onload = resolve;
+      img.onerror = resolve;
+    });
+  });
+
+  const videoPromises = videos.map(video => {
+    if (video.readyState >= 4) return Promise.resolve();
+
+    return new Promise(resolve => {
+      video.addEventListener('canplaythrough', resolve, { once: true });
+      video.addEventListener('error', resolve, { once: true });
+    });
+  });
+
+  await Promise.all([...imagePromises, ...videoPromises]);
+
+  document.getElementById('loader').classList.add('hidden');
+}
+
+waitForMedia();
 </script>
 
 <template>
@@ -278,6 +285,10 @@ onBeforeUnmount(() => {
       <div class="absolute bottom-10 z-20 flex space-x-4">
         <button v-for="(slide, i) in slides" :key="'dot-'+i" @click="setSlide(i)" 
           class="w-3 h-3 rounded-full transition-all duration-300" :class="activeSlide === i ? 'bg-white scale-150 w-6' : 'bg-white/50 hover:bg-white'"></button>
+      </div>
+
+      <div id="loader">
+        <div class="spinner"></div>
       </div>
     </section>
 
@@ -866,18 +877,6 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- VIDEOS, ARTICLES & ADVICE 1 -->
     <section id="videosArticle" class="py-5 md:py-10 md:pt-20 bg-white relative hidden">
       <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
@@ -972,14 +971,6 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-
-
-
-
-
-
-
-
     <!-- Second Parallax Section -->
     <section 
       class="py-32 relative flex items-center justify-center overflow-hidden min-h-[90vh]  lg:min-h-[100vh]
@@ -1030,12 +1021,6 @@ onBeforeUnmount(() => {
         </div>
        </div>
     </section>
-
-
-
-
-
-
 
     <section id="featured" class="py-5 md:py-10 md:pt-20 bg-white relative">
       <div class="w-full px-4 sm:px-6 lg:px-8 relative z-10 
@@ -1420,5 +1405,36 @@ onBeforeUnmount(() => {
 
 .zoom-image {
   animation: kenburns 12s ease-in-out infinite alternate;
+}
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
 }
 </style>
